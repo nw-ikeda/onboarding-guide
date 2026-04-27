@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>オンボーディングガイド | Web制作基礎知識</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="sidebar-logo-icon">📚</span>
+      <div>
+        <div class="sidebar-logo-title">オンボーディング</div>
+        <div class="sidebar-logo-sub">Web制作 基礎ガイド</div>
+      </div>
+    </div>
+
+    <div class="sidebar-search">
+      <span class="sidebar-search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="用語を検索..." oninput="handleSearch(this.value)">
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">カテゴリ</div>
+      <div id="categoryList"></div>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <div class="content-header">
+      <h1 id="pageTitle">すべての用語</h1>
+      <div class="meta">
+        <span id="termCount" class="count-badge">0件</span>
+        <span id="searchLabel" class="search-label" style="display:none"></span>
+      </div>
+    </div>
+
+    <div class="cards-grid" id="cardsGrid"></div>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div style="font-size:48px;margin-bottom:16px">🔍</div>
+      <h3>該当する用語が見つかりません</h3>
+      <p>別のキーワードで検索してみてください</p>
+    </div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script>
+  let currentCategory = 'all';
+  let currentSearch = '';
+
+  // ── カテゴリリストを描画
+  function renderCategories() {
+    const list = document.getElementById('categoryList');
+    list.innerHTML = CATEGORIES.map(cat => `
+      <div class="nav-item ${cat.id === currentCategory ? 'active' : ''}"
+           onclick="selectCategory('${cat.id}')"
+           style="${cat.id === currentCategory ? 'background:'+cat.color : ''}">
+        <span class="nav-item-icon">${cat.icon}</span>
+        <span class="nav-item-label">${cat.label}</span>
+      </div>
+    `).join('');
+  }
+
+  // ── カード一覧を描画
+  function renderCards() {
+    const filtered = TERMS.filter(t => {
+      const matchCat = currentCategory === 'all' || t.category === currentCategory;
+      const q = currentSearch.toLowerCase();
+      const matchSearch = !q
+        || t.title.toLowerCase().includes(q)
+        || t.shortDesc.toLowerCase().includes(q)
+        || t.tags.some(tag => tag.toLowerCase().includes(q));
+      return matchCat && matchSearch;
+    });
+
+    const grid = document.getElementById('cardsGrid');
+    const empty = document.getElementById('emptyState');
+    const countEl = document.getElementById('termCount');
+
+    countEl.textContent = filtered.length + '件';
+
+    if (filtered.length === 0) {
+      grid.style.display = 'none';
+      empty.style.display = 'block';
+      return;
+    }
+    grid.style.display = 'grid';
+    empty.style.display = 'none';
+
+    const cat = CATEGORIES.find(c => c.id === currentCategory) || CATEGORIES[0];
+
+    grid.innerHTML = filtered.map(term => {
+      const termCat = CATEGORIES.find(c => c.id === term.category);
+      const tagClass = 'tag-' + term.category;
+      return `
+        <div class="term-card" onclick="goDetail('${term.id}')">
+          <span class="card-category-tag ${tagClass}">${termCat ? termCat.icon + ' ' + termCat.label : ''}</span>
+          <div class="card-title">${highlight(term.title, currentSearch)}</div>
+          <div class="card-desc">${highlight(term.shortDesc, currentSearch)}</div>
+          <div class="card-tags">
+            ${term.tags.slice(0,4).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+          <div class="card-footer">
+            <span class="card-link">詳細を見る →</span>
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  // ── ページタイトル更新
+  function updateTitle() {
+    const cat = CATEGORIES.find(c => c.id === currentCategory);
+    document.getElementById('pageTitle').textContent =
+      currentCategory === 'all' ? 'すべての用語' : cat.label;
+
+    const label = document.getElementById('searchLabel');
+    if (currentSearch) {
+      label.style.display = 'inline';
+      label.textContent = '「' + currentSearch + '」で検索中';
+    } else {
+      label.style.display = 'none';
+    }
+  }
+
+  // ── カテゴリ選択
+  function selectCategory(id) {
+    currentCategory = id;
+    currentSearch = '';
+    document.getElementById('searchInput').value = '';
+    updateTitle();
+    renderCategories();
+    renderCards();
+  }
+
+  // ── 検索
+  function handleSearch(val) {
+    currentSearch = val;
+    updateTitle();
+    renderCards();
+  }
+
+  // ── 詳細ページへ
+  function goDetail(id) {
+    location.href = 'detail.html?id=' + id;
+  }
+
+  // ── 検索ハイライト
+  function highlight(text, q) {
+    if (!q) return text;
+    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  // ── URL パラメータからカテゴリ復元
+  const params = new URLSearchParams(location.search);
+  if (params.get('category')) currentCategory = params.get('category');
+
+  // ── 初期描画
+  renderCategories();
+  updateTitle();
+  renderCards();
+</script>
+</body>
+</html>

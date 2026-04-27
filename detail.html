@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>詳細 | オンボーディングガイド</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <div class="sidebar-logo" onclick="location.href='index.html'" style="cursor:pointer">
+      <span class="sidebar-logo-icon">📚</span>
+      <div>
+        <div class="sidebar-logo-title">オンボーディング</div>
+        <div class="sidebar-logo-sub">Web制作 基礎ガイド</div>
+      </div>
+    </div>
+
+    <div class="sidebar-search">
+      <span class="sidebar-search-icon">🔍</span>
+      <input type="text" id="searchInput" placeholder="用語を検索..."
+        onkeydown="if(event.key==='Enter')location.href='index.html?q='+this.value">
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section">カテゴリ</div>
+      <div id="categoryList"></div>
+    </nav>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content">
+    <a href="index.html" class="back-btn">← 一覧に戻る</a>
+
+    <div id="detailContent">
+      <div class="empty-state">
+        <div style="font-size:48px;margin-bottom:16px">⚠️</div>
+        <h3>用語が見つかりません</h3>
+        <p><a href="index.html" style="color:var(--primary)">一覧に戻る</a></p>
+      </div>
+    </div>
+
+    <!-- PREV / NEXT NAV -->
+    <div class="detail-nav" id="detailNav" style="display:none">
+      <a href="#" id="prevBtn" class="detail-nav-btn">← 前の用語</a>
+      <a href="#" id="nextBtn" class="detail-nav-btn">次の用語 →</a>
+    </div>
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script>
+  // ── サイドバー描画
+  function renderSidebar(activeCat) {
+    const list = document.getElementById('categoryList');
+    list.innerHTML = CATEGORIES.map(cat => `
+      <div class="nav-item ${cat.id === activeCat ? 'active' : ''}"
+           onclick="location.href='index.html?category=${cat.id}'"
+           style="${cat.id === activeCat ? 'background:'+cat.color : ''}">
+        <span class="nav-item-icon">${cat.icon}</span>
+        <span class="nav-item-label">${cat.label}</span>
+      </div>
+    `).join('');
+  }
+
+  // ── メインコンテンツ描画
+  function renderDetail(id) {
+    const term = TERMS.find(t => t.id === id);
+    if (!term) return;
+
+    document.title = term.title + ' | オンボーディングガイド';
+
+    const cat = CATEGORIES.find(c => c.id === term.category);
+    const tagClass = 'tag-' + term.category;
+
+    document.getElementById('detailContent').innerHTML = `
+      <div class="detail-header">
+        <span class="card-category-tag ${tagClass}" style="font-size:13px;padding:5px 14px">
+          ${cat ? cat.icon + ' ' + cat.label : ''}
+        </span>
+        <h1>${term.title}</h1>
+        <p style="font-size:15px;color:var(--gray-500);margin-top:8px">${term.shortDesc}</p>
+        <div class="card-tags" style="margin-top:12px">
+          ${term.tags.map(t => `<span class="tag">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="detail-body">${term.content}</div>
+    `;
+
+    renderSidebar(term.category);
+
+    // 前後ナビ
+    const sameCat = TERMS.filter(t => t.category === term.category);
+    const idx = sameCat.findIndex(t => t.id === id);
+    const nav = document.getElementById('detailNav');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    nav.style.display = 'flex';
+    if (idx > 0) {
+      prevBtn.href = 'detail.html?id=' + sameCat[idx-1].id;
+      prevBtn.textContent = '← ' + sameCat[idx-1].title;
+      prevBtn.style.visibility = 'visible';
+    } else {
+      prevBtn.style.visibility = 'hidden';
+    }
+    if (idx < sameCat.length - 1) {
+      nextBtn.href = 'detail.html?id=' + sameCat[idx+1].id;
+      nextBtn.textContent = sameCat[idx+1].title + ' →';
+      nextBtn.style.visibility = 'visible';
+    } else {
+      nextBtn.style.visibility = 'hidden';
+    }
+  }
+
+  // ── 初期化
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  if (id) {
+    renderDetail(id);
+  } else {
+    renderSidebar('all');
+  }
+</script>
+</body>
+</html>

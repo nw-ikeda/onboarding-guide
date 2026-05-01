@@ -1367,7 +1367,6 @@ const TERMS = [
 </div>`
   },
 
-];
 
   /* ─── NEW TERMS (docx v2) ─────────────────────────────── */
 
@@ -1708,5 +1707,7 @@ const TERMS = [
   </div>
 </div>`
   },
+
+];
 
 // end of data

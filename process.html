@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web制作の工程 | オンボーディングガイド</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar">
+    <a class="sidebar-logo" href="index.html">
+      <span class="sidebar-logo-icon">📚</span>
+      <div>
+        <span class="sidebar-logo-title">オンボーディング</span>
+        <span class="sidebar-logo-sub">Web制作 基礎ガイド</span>
+      </div>
+    </a>
+
+    <nav class="sidebar-nav" style="margin-top:8px">
+      <div class="nav-section">ページ</div>
+      <div class="nav-item" onclick="location.href='index.html'">
+        <span class="nav-item-icon">🏠</span>
+        <span class="nav-item-label">トップ</span>
+      </div>
+      <div class="nav-item" onclick="location.href='list.html'">
+        <span class="nav-item-icon">📋</span>
+        <span class="nav-item-label">用語一覧</span>
+      </div>
+      <div class="nav-item active" style="background:#0e7490">
+        <span class="nav-item-icon">🗓️</span>
+        <span class="nav-item-label">制作の工程</span>
+      </div>
+
+      <div class="nav-section" style="margin-top:20px">フェーズ</div>
+      <div id="phaseNav"></div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-home-btn" href="index.html">← トップへ戻る</a>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <main class="main-content" style="padding:0;background:#f0f9ff">
+
+    <!-- Hero -->
+    <div class="proc-hero">
+      <div class="proc-hero-inner">
+        <div class="proc-hero-badge">制作フロー</div>
+        <h1 class="proc-hero-title">Web制作の工程</h1>
+        <p class="proc-hero-sub">ヒアリングから公開後まで、全12フェーズの流れと各担当者の役割をまとめています</p>
+        <div class="proc-hero-stats">
+          <div class="proc-stat"><span class="proc-stat-num">12</span><span class="proc-stat-label">フェーズ</span></div>
+          <div class="proc-stat"><span class="proc-stat-num">8</span><span class="proc-stat-label">担当ロール</span></div>
+          <div class="proc-stat"><span class="proc-stat-num">20+</span><span class="proc-stat-label">成果物</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="padding:32px 40px;max-width:1100px">
+
+      <!-- Phase Timeline -->
+      <section class="proc-section">
+        <h2 class="proc-section-title">📍 全体の流れ</h2>
+        <div class="proc-timeline">
+          <div class="proc-phase-arrow phase-color-1">
+            <span class="proc-phase-num">1</span>
+            <span class="proc-phase-name">ヒアリング</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-2">
+            <span class="proc-phase-num">2</span>
+            <span class="proc-phase-name">提案</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-3">
+            <span class="proc-phase-num">3</span>
+            <span class="proc-phase-name">契約・着手</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-4">
+            <span class="proc-phase-num">4</span>
+            <span class="proc-phase-name">キックオフ</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-5">
+            <span class="proc-phase-num">5</span>
+            <span class="proc-phase-name">要件定義</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-6">
+            <span class="proc-phase-num">6</span>
+            <span class="proc-phase-name">VI設計</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-7">
+            <span class="proc-phase-num">7</span>
+            <span class="proc-phase-name">再見積</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-8">
+            <span class="proc-phase-num">8</span>
+            <span class="proc-phase-name">デザイン</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-9">
+            <span class="proc-phase-num">9</span>
+            <span class="proc-phase-name">実装</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-10">
+            <span class="proc-phase-num">10</span>
+            <span class="proc-phase-name">検証</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-11">
+            <span class="proc-phase-num">11</span>
+            <span class="proc-phase-name">リリース</span>
+          </div>
+          <div class="proc-phase-arrow phase-color-12 last">
+            <span class="proc-phase-num">12</span>
+            <span class="proc-phase-name">公開後</span>
+          </div>
+        </div>
+        <div class="proc-flow-note">各フェーズは前工程の成果物を受けて進みます。フェーズ間の引き継ぎが重要です。</div>
+      </section>
+
+      <!-- Swimlane -->
+      <section class="proc-section">
+        <h2 class="proc-section-title">👥 担当者別 工程マップ</h2>
+        <div class="swimlane-wrap">
+          <table class="swimlane-table">
+            <thead>
+              <tr>
+                <th class="swim-role-col">担当</th>
+                <th class="swim-phase phase-color-1">1<br><span>ヒアリング</span></th>
+                <th class="swim-phase phase-color-2">2<br><span>提案</span></th>
+                <th class="swim-phase phase-color-3">3<br><span>契約</span></th>
+                <th class="swim-phase phase-color-4">4<br><span>キックオフ</span></th>
+                <th class="swim-phase phase-color-5">5<br><span>要件定義</span></th>
+                <th class="swim-phase phase-color-6">6<br><span>VI設計</span></th>
+                <th class="swim-phase phase-color-7">7<br><span>再見積</span></th>
+                <th class="swim-phase phase-color-8">8<br><span>デザイン</span></th>
+                <th class="swim-phase phase-color-9">9<br><span>実装</span></th>
+                <th class="swim-phase phase-color-10">10<br><span>検証</span></th>
+                <th class="swim-phase phase-color-11">11<br><span>リリース</span></th>
+                <th class="swim-phase phase-color-12">12<br><span>公開後</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="swim-row swim-client">
+                <td class="swim-role">
+                  <span class="role-badge client">お客様</span>
+                </td>
+                <td><div class="swim-task">RFP提供<br>MTG参加</div></td>
+                <td><div class="swim-task">MTG参加<br>内容確認</div></td>
+                <td><div class="swim-task">契約確認<br>着手金入金</div></td>
+                <td><div class="swim-task">MTG参加<br>前提確認</div></td>
+                <td><div class="swim-task">認識合わせ<br>WF確認</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task">デザイン確認</div></td>
+                <td><div class="swim-task">仕様確認</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge planner">プランナー</span>
+                </td>
+                <td><div class="swim-task main">ヒアリングシート<br>作成</div></td>
+                <td><div class="swim-task main">見積書作成<br>提案書作成</div></td>
+                <td><div class="swim-task">社内共有<br>アサイン</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge is">IS</span>
+                </td>
+                <td><div class="swim-task">ヒアリング<br>サポート</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">契約書締結<br>バックオフィス</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge pm">PM</span>
+                </td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">プロジェクト<br>立ち上げ</div></td>
+                <td><div class="swim-task main">PL参加<br>スケジュール整理</div></td>
+                <td><div class="swim-task">WBS確認<br>進行管理</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">再見積<br>対応</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge dir">Dir</span>
+                </td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task">チーム共有<br>メンバーアサイン</div></td>
+                <td><div class="swim-task">前提条件<br>共有</div></td>
+                <td><div class="swim-task main">要件定義書<br>WBS・WF作成<br>キーワード選定</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">WF整合性確認<br>ユーザー導線確認</div></td>
+                <td><div class="swim-task main">画面仕様書作成<br>仕様確認</div></td>
+                <td><div class="swim-task main">修正管理<br>品質確認</div></td>
+                <td><div class="swim-task main">GA確認<br>Search Console</div></td>
+                <td><div class="swim-task main">瑕疵対応<br>保守提案</div></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge ad">AD</span>
+                </td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">ブランド<br>方針決定</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">デザイン<br>監修</div></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge des">Des</span>
+                </td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">ロゴ制作<br>ガイドライン作成</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">TOP→下層<br>デザイン作成</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task">デザイン<br>再現確認</div></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task">CMSマニュアル<br>作成</div></td>
+              </tr>
+              <tr class="swim-row">
+                <td class="swim-role">
+                  <span class="role-badge eng">Eng</span>
+                </td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td class="swim-empty"></td>
+                <td><div class="swim-task main">コーディング<br>CMS構築<br>リダイレクト設定</div></td>
+                <td><div class="swim-task main">リンクチェック<br>表示・端末確認</div></td>
+                <td><div class="swim-task main">本番環境<br>公開対応</div></td>
+                <td><div class="swim-task">瑕疵対応</div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="swimlane-legend">
+          <span class="swim-legend-item"><span class="swim-legend-box main"></span>主担当</span>
+          <span class="swim-legend-item"><span class="swim-legend-box sub"></span>参加・補助</span>
+          <span class="swim-legend-item"><span class="swim-legend-box empty"></span>対象外</span>
+        </div>
+      </section>
+
+      <!-- Phase Details -->
+      <section class="proc-section">
+        <h2 class="proc-section-title">📂 フェーズ詳細</h2>
+        <div class="phase-cards">
+
+          <!-- Phase 1 -->
+          <div class="phase-card" id="phase-1">
+            <div class="phase-card-header phase-color-1" onclick="togglePhase(1)">
+              <div class="phase-card-num">Phase 1</div>
+              <div class="phase-card-title">ヒアリング</div>
+              <div class="phase-card-roles">
+                <span class="role-badge planner">プランナー</span>
+                <span class="role-badge is">IS</span>
+                <span class="role-badge client">お客様</span>
+              </div>
+              <span class="phase-toggle" id="toggle-1">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-1">
+              <div class="phase-point">
+                <div class="phase-point-icon">🎯</div>
+                <div>
+                  <strong>目的</strong><br>
+                  クライアントの課題・目的を整理する。「何を作るか」ではなく<strong>「なぜ作るか」</strong>を確認するフェーズ。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>ヒアリングシート</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>お客様からRFP（提案依頼書）をご提示いただき、MTGを通してヒアリングシートを作成します。この段階では、サイトの目的・ターゲット・必要な機能などを確認します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 2 -->
+          <div class="phase-card" id="phase-2">
+            <div class="phase-card-header phase-color-2" onclick="togglePhase(2)">
+              <div class="phase-card-num">Phase 2</div>
+              <div class="phase-card-title">提案</div>
+              <div class="phase-card-roles">
+                <span class="role-badge planner">プランナー</span>
+                <span class="role-badge client">お客様</span>
+              </div>
+              <span class="phase-toggle" id="toggle-2">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-2">
+              <div class="phase-point">
+                <div class="phase-point-icon">💡</div>
+                <div>
+                  <strong>目的</strong><br>
+                  ヒアリング内容をもとに、サイトの方向性・サイトマップ・概算費用をクライアントに提示する。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>見積書（概算お見積り）</li>
+                  <li>提案書</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>プランナーが中心となり、与件の整理やゴール設定を踏まえ、サイトの方向性やサイトマップを提案します。概算費用もあわせてクライアントに提示します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 3 -->
+          <div class="phase-card" id="phase-3">
+            <div class="phase-card-header phase-color-3" onclick="togglePhase(3)">
+              <div class="phase-card-num">Phase 3</div>
+              <div class="phase-card-title">契約・着手</div>
+              <div class="phase-card-roles">
+                <span class="role-badge pm">PM</span>
+                <span class="role-badge is">IS</span>
+                <span class="role-badge client">お客様</span>
+              </div>
+              <span class="phase-toggle" id="toggle-3">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-3">
+              <div class="phase-point">
+                <div class="phase-point-icon">✍️</div>
+                <div>
+                  <strong>ポイント</strong><br>
+                  ここで <strong>営業 → 制作チームにバトンが渡ります</strong>。社内では制作チームへの共有とメンバーアサインが行われます。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>個別契約書</li>
+                  <li>業務委託契約書</li>
+                  <li>サービス仕様書</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>契約書は担当者と先方との間で内容のやりとりを経て確定。「個別契約書」「業務委託契約書」と「サービス仕様書」をバックオフィスにお渡しして締結します。</p>
+                <p>同時に、お客様には着手金のご入金をお願いします。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 4 -->
+          <div class="phase-card" id="phase-4">
+            <div class="phase-card-header phase-color-4" onclick="togglePhase(4)">
+              <div class="phase-card-num">Phase 4</div>
+              <div class="phase-card-title">キックオフ</div>
+              <div class="phase-card-roles">
+                <span class="role-badge pm">PM</span>
+                <span class="role-badge dir">Dir</span>
+                <span class="role-badge client">お客様</span>
+              </div>
+              <span class="phase-toggle" id="toggle-4">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-4">
+              <div class="phase-point">
+                <div class="phase-point-icon">🚀</div>
+                <div>
+                  <strong>目的</strong><br>
+                  PLメンバーとクライアントで制作の進め方や前提条件を共有し、プロジェクトを正式に開始する。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>プロジェクト準備資料</li>
+                  <li>要件定義の前提共有</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>ディレクターはスケジュールや進行方法を整理します。MTGでPLメンバーとクライアントが前提条件を揃えることで、以降のフェーズがスムーズに進みます。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 5 -->
+          <div class="phase-card" id="phase-5">
+            <div class="phase-card-header phase-color-5" onclick="togglePhase(5)">
+              <div class="phase-card-num">Phase 5</div>
+              <div class="phase-card-title">要件定義 ⭐ 重要</div>
+              <div class="phase-card-roles">
+                <span class="role-badge dir">Dir（中心）</span>
+                <span class="role-badge client">お客様</span>
+              </div>
+              <span class="phase-toggle" id="toggle-5">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-5">
+              <div class="phase-point">
+                <div class="phase-point-icon">⭐</div>
+                <div>
+                  <strong>このフェーズはディレクターの中心業務</strong><br>
+                  どんなサイトにするかを具体化し、クライアントと認識を揃えます。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物（7つ）</div>
+                <ul>
+                  <li>概算スケジュール（プロジェクト準備資料）</li>
+                  <li>WBS（ワークブレイクダウンストラクチャー）</li>
+                  <li>要件定義書</li>
+                  <li>キーワード選定（マーケのキーワード選定・グルーピング資料）</li>
+                  <li>ディレクトリマップ（制作進行資料）</li>
+                  <li>ワイヤーフレーム（Figma）</li>
+                  <li>公開手順資料</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>このフェーズで「どんなサイトを作るか」の全体像が決まります。成果物が多く、各資料の品質がプロジェクト全体の精度に直結します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 6 -->
+          <div class="phase-card" id="phase-6">
+            <div class="phase-card-header phase-color-6" onclick="togglePhase(6)">
+              <div class="phase-card-num">Phase 6</div>
+              <div class="phase-card-title">VI設計 / ロゴ制作</div>
+              <div class="phase-card-roles">
+                <span class="role-badge ad">AD</span>
+                <span class="role-badge des">Des</span>
+              </div>
+              <span class="phase-toggle" id="toggle-6">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-6">
+              <div class="phase-point">
+                <div class="phase-point-icon">🎨</div>
+                <div>
+                  <strong>目的</strong><br>
+                  サイト全体のビジュアル方針を決めるフェーズ。主にデザイナーとアートディレクターが対応。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物（必要な場合のみ）</div>
+                <ul>
+                  <li>ロゴ</li>
+                  <li>デザインガイドライン</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p><strong>VI設計（ビジュアル・アイデンティティ）</strong>とは：企業やブランドの理念・価値・コンセプトをロゴ、色、フォント、写真などの視覚的要素で統一し、ブランドの「らしさ」を一貫して伝える仕組みです。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 7 -->
+          <div class="phase-card" id="phase-7">
+            <div class="phase-card-header phase-color-7" onclick="togglePhase(7)">
+              <div class="phase-card-num">Phase 7</div>
+              <div class="phase-card-title">再見積</div>
+              <div class="phase-card-roles">
+                <span class="role-badge pm">PM</span>
+              </div>
+              <span class="phase-toggle" id="toggle-7">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-7">
+              <div class="phase-point">
+                <div class="phase-point-icon">💰</div>
+                <div>
+                  <strong>マストではない</strong><br>
+                  このフェーズは必ず発生するわけではなく、制作範囲が変わった場合にのみ実施します。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>追加見積書</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>当初予定していた見積もりに対して、追加での業務依頼などがあった際に再見積もりを実施します。必要に応じて追加の業務委託契約を締結します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 8 -->
+          <div class="phase-card" id="phase-8">
+            <div class="phase-card-header phase-color-8" onclick="togglePhase(8)">
+              <div class="phase-card-num">Phase 8</div>
+              <div class="phase-card-title">デザイン</div>
+              <div class="phase-card-roles">
+                <span class="role-badge des">Des</span>
+                <span class="role-badge ad">AD</span>
+                <span class="role-badge dir">Dir</span>
+              </div>
+              <span class="phase-toggle" id="toggle-8">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-8">
+              <div class="phase-point">
+                <div class="phase-point-icon">🖌️</div>
+                <div>
+                  <strong>流れ</strong><br>
+                  まずTOPページのデザインを作成・確認し、方向性が固まったら下層ページへ展開します。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な成果物</div>
+                <ul>
+                  <li>TOPページデザイン</li>
+                  <li>下層ページデザイン</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>デザインを見て、違和感や順番の入れ替えなどを実行。ディレクターはWFとの整合性やユーザー導線を確認していきます。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 9 -->
+          <div class="phase-card" id="phase-9">
+            <div class="phase-card-header phase-color-9" onclick="togglePhase(9)">
+              <div class="phase-card-num">Phase 9</div>
+              <div class="phase-card-title">実装（開発）</div>
+              <div class="phase-card-roles">
+                <span class="role-badge eng">Eng</span>
+                <span class="role-badge dir">Dir</span>
+              </div>
+              <span class="phase-toggle" id="toggle-9">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-9">
+              <div class="phase-point">
+                <div class="phase-point-icon">💻</div>
+                <div>
+                  <strong>目的</strong><br>
+                  デザインが確定した後、エンジニアがコーディングやCMS構築などを行うフェーズ。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 エンジニアの作業内容</div>
+                <ul>
+                  <li>コーディング</li>
+                  <li>WordPress構築</li>
+                  <li>リダイレクト設定</li>
+                  <li>記事移行</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>ディレクターは画面仕様書の作成や仕様確認を行います。実装中に仕様の曖昧な点が出てきた際はディレクターが判断・整理します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 10 -->
+          <div class="phase-card" id="phase-10">
+            <div class="phase-card-header phase-color-10" onclick="togglePhase(10)">
+              <div class="phase-card-num">Phase 10</div>
+              <div class="phase-card-title">検証</div>
+              <div class="phase-card-roles">
+                <span class="role-badge dir">Dir</span>
+                <span class="role-badge des">Des</span>
+                <span class="role-badge eng">Eng</span>
+              </div>
+              <span class="phase-toggle" id="toggle-10">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-10">
+              <div class="phase-point">
+                <div class="phase-point-icon">🔍</div>
+                <div>
+                  <strong>目的</strong><br>
+                  テストサイトで品質を確認し、問題を修正管理シートで管理しながら解消します。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 チェック内容</div>
+                <ul>
+                  <li>デザイン再現</li>
+                  <li>リンクチェック</li>
+                  <li>表示確認</li>
+                  <li>端末確認</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>修正管理シートを使って修正内容を一元管理します。検証→修正のサイクルを繰り返し、問題がなくなったらリリースフェーズへ進みます。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 11 -->
+          <div class="phase-card" id="phase-11">
+            <div class="phase-card-header phase-color-11" onclick="togglePhase(11)">
+              <div class="phase-card-num">Phase 11</div>
+              <div class="phase-card-title">リリース</div>
+              <div class="phase-card-roles">
+                <span class="role-badge eng">Eng</span>
+                <span class="role-badge dir">Dir</span>
+              </div>
+              <span class="phase-toggle" id="toggle-11">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-11">
+              <div class="phase-point">
+                <div class="phase-point-icon">🚀</div>
+                <div>
+                  <strong>目的</strong><br>
+                  検証・修正が完了し問題がなければ、本番環境へ公開します。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 公開後の対応</div>
+                <ul>
+                  <li>GAの発火確認</li>
+                  <li>Search Console登録</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>タグの発行などはお客様に行っていただき、こちらは追加するのみ対応します。</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Phase 12 -->
+          <div class="phase-card" id="phase-12">
+            <div class="phase-card-header phase-color-12" onclick="togglePhase(12)">
+              <div class="phase-card-num">Phase 12</div>
+              <div class="phase-card-title">公開後</div>
+              <div class="phase-card-roles">
+                <span class="role-badge dir">Dir</span>
+                <span class="role-badge des">Des</span>
+                <span class="role-badge eng">Eng</span>
+              </div>
+              <span class="phase-toggle" id="toggle-12">▼</span>
+            </div>
+            <div class="phase-card-body" id="body-12">
+              <div class="phase-point">
+                <div class="phase-point-icon">🏁</div>
+                <div>
+                  <strong>目的</strong><br>
+                  公開後の瑕疵対応・保守案内までを含めて完了となります。
+                </div>
+              </div>
+              <div class="phase-output">
+                <div class="phase-output-title">📄 主な対応内容</div>
+                <ul>
+                  <li>瑕疵（かし）対応</li>
+                  <li>CMSマニュアル作成（依頼がある場合のみ有料）</li>
+                  <li>保守提案</li>
+                </ul>
+              </div>
+              <div class="phase-detail">
+                <p>CMSマニュアルは依頼があった場合のみ有料で実施します。対象外の依頼については画面録画でお送りする場合もあります。</p>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /.phase-cards -->
+      </section>
+
+      <!-- Summary -->
+      <section class="proc-section">
+        <h2 class="proc-section-title">📌 まとめ</h2>
+        <div class="proc-summary-grid">
+          <div class="proc-summary-card">
+            <div class="proc-summary-icon">🎯</div>
+            <div class="proc-summary-title">ディレクターの役割</div>
+            <p>主に要件定義〜検証までの進行管理と品質管理を担い、PJ全体のハブとして動く。WFと各フェーズの整合性を常に確認する。</p>
+          </div>
+          <div class="proc-summary-card">
+            <div class="proc-summary-icon">🔗</div>
+            <div class="proc-summary-title">フェーズ間の引き継ぎ</div>
+            <p>各フェーズは前工程の成果物を受けて進む。チェックシートでの確認とクライアントへの確認を徹底し、抜け漏れ・認識ズレを防ぐ。</p>
+          </div>
+          <div class="proc-summary-card">
+            <div class="proc-summary-icon">📋</div>
+            <div class="proc-summary-title">チェックシートの活用</div>
+            <p>各フェーズのチェックシートとクライアント確認項目が明確になっているため、進行の抜け漏れを防ぎつつ期待値ズレを最小化できる。</p>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /padding wrap -->
+  </main>
+</div>
+
+<script src="data.js"></script>
+<script>
+  /* サイドバーのフェーズナビを生成 */
+  const phases = [
+    'ヒアリング','提案','契約・着手','キックオフ','要件定義',
+    'VI設計','再見積','デザイン','実装','検証','リリース','公開後'
+  ];
+  document.getElementById('phaseNav').innerHTML = phases.map((name, i) => `
+    <div class="nav-item" style="padding:6px 16px;font-size:12px"
+         onclick="document.getElementById('phase-${i+1}').scrollIntoView({behavior:'smooth'})">
+      <span class="nav-item-icon" style="font-size:11px;min-width:20px">${i+1}</span>
+      <span class="nav-item-label">${name}</span>
+    </div>
+  `).join('');
+
+  /* フェーズカードのトグル */
+  function togglePhase(n) {
+    const body   = document.getElementById('body-' + n);
+    const toggle = document.getElementById('toggle-' + n);
+    const isOpen = body.style.display !== 'none' && body.style.display !== '';
+    body.style.display   = isOpen ? 'none' : 'block';
+    toggle.textContent   = isOpen ? '▼' : '▲';
+  }
+
+  /* 初期状態：全フェーズを閉じる */
+  for (let i = 1; i <= 12; i++) {
+    const b = document.getElementById('body-' + i);
+    if (b) b.style.display = 'none';
+  }
+</script>
+</body>
+</html>

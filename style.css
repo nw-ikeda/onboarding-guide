@@ -618,3 +618,341 @@ mark {
 }
 .top-footer a { color: #60a5fa; text-decoration: none; }
 .top-footer a:hover { text-decoration: underline; }
+
+/* Process Banner (index.html) */
+.process-banner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: linear-gradient(135deg, #0c4a6e, #0e7490);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  color: #fff;
+  text-decoration: none;
+  transition: filter 0.2s;
+  flex-wrap: wrap;
+}
+.process-banner:hover { filter: brightness(1.08); }
+.process-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+}
+.process-banner-icon { font-size: 32px; }
+.process-banner-title { font-size: 17px; font-weight: 800; margin-bottom: 3px; }
+.process-banner-desc { font-size: 12px; color: rgba(255,255,255,0.75); }
+.process-banner-phases {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.proc-mini-badge {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 12px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.proc-mini-sep { color: rgba(255,255,255,0.5); font-size: 12px; }
+.process-banner-link {
+  font-size: 13px;
+  font-weight: 600;
+  background: rgba(255,255,255,0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   PROCESS PAGE (process.html)
+   ============================================================ */
+
+/* Hero */
+.proc-hero {
+  background: linear-gradient(135deg, #0c4a6e 0%, #0e7490 50%, #164e63 100%);
+  color: #fff;
+  padding: 48px 40px 40px;
+}
+.proc-hero-inner { max-width: 800px; }
+.proc-hero-badge {
+  display: inline-block;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+.proc-hero-title { font-size: 32px; font-weight: 800; margin-bottom: 10px; }
+.proc-hero-sub { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 28px; }
+.proc-hero-stats { display: flex; gap: 28px; }
+.proc-stat { text-align: center; }
+.proc-stat-num { display: block; font-size: 28px; font-weight: 800; color: #67e8f9; }
+.proc-stat-label { font-size: 11px; color: rgba(255,255,255,0.7); }
+
+/* Section */
+.proc-section { margin-bottom: 48px; }
+.proc-section-title {
+  font-size: 18px; font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--gray-200);
+}
+
+/* Phase Timeline */
+.proc-timeline {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  flex-wrap: nowrap;
+}
+.proc-phase-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 80px;
+  padding: 10px 6px 10px 18px;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%, 14px 50%);
+  color: #fff;
+  font-weight: 700;
+  text-align: center;
+  cursor: default;
+  flex-shrink: 0;
+}
+.proc-phase-arrow:first-child {
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 50%, calc(100% - 14px) 100%, 0 100%);
+  padding-left: 12px;
+}
+.proc-phase-arrow.last {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 14px 50%);
+}
+.proc-phase-num { font-size: 11px; opacity: 0.85; }
+.proc-phase-name { font-size: 10px; margin-top: 2px; line-height: 1.2; }
+
+/* Phase Colors */
+.phase-color-1  { background: #0284c7; }
+.phase-color-2  { background: #0369a1; }
+.phase-color-3  { background: #047857; }
+.phase-color-4  { background: #065f46; }
+.phase-color-5  { background: #7c3aed; }
+.phase-color-6  { background: #6d28d9; }
+.phase-color-7  { background: #b45309; }
+.phase-color-8  { background: #9d174d; }
+.phase-color-9  { background: #be123c; }
+.phase-color-10 { background: #0e7490; }
+.phase-color-11 { background: #0f766e; }
+.phase-color-12 { background: #374151; }
+
+.proc-flow-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: var(--gray-500);
+  padding: 8px 14px;
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--gray-300);
+}
+
+/* Swimlane */
+.swimlane-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.swimlane-table {
+  border-collapse: collapse;
+  min-width: 900px;
+  width: 100%;
+  font-size: 11px;
+}
+.swim-role-col { width: 80px; min-width: 80px; background: var(--gray-800); }
+.swim-phase {
+  text-align: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  padding: 8px 4px;
+  line-height: 1.4;
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+.swim-phase span { font-size: 9px; font-weight: 400; display: block; opacity: 0.85; }
+.swim-row { border-bottom: 1px solid var(--gray-100); }
+.swim-row:last-child { border-bottom: none; }
+.swim-role {
+  padding: 8px 6px;
+  text-align: center;
+  background: var(--gray-800);
+  vertical-align: middle;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+.swimlane-table td {
+  padding: 6px 5px;
+  vertical-align: top;
+  border-right: 1px solid var(--gray-100);
+}
+.swimlane-table td:last-child { border-right: none; }
+.swim-task {
+  background: #dbeafe;
+  border-radius: 4px;
+  padding: 4px 6px;
+  line-height: 1.4;
+  color: #1e40af;
+  font-size: 10px;
+  border-left: 2px solid #3b82f6;
+}
+.swim-task.main {
+  background: #ede9fe;
+  color: #4c1d95;
+  border-left-color: #7c3aed;
+  font-weight: 600;
+}
+.swim-empty { background: var(--gray-50); }
+.swim-client .swim-task { background: #fef3c7; color: #78350f; border-left-color: #f59e0b; }
+
+/* Role Badges */
+.role-badge {
+  display: inline-block;
+  border-radius: 20px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.role-badge.client  { background: #fef3c7; color: #78350f; }
+.role-badge.planner { background: #dbeafe; color: #1e3a8a; }
+.role-badge.is      { background: #d1fae5; color: #064e3b; }
+.role-badge.pm      { background: #ede9fe; color: #3b0764; }
+.role-badge.dir     { background: #fee2e2; color: #7f1d1d; }
+.role-badge.ad      { background: #fce7f3; color: #831843; }
+.role-badge.des     { background: #f3e8ff; color: #4a044e; }
+.role-badge.eng     { background: #cffafe; color: #164e63; }
+
+.swimlane-legend {
+  display: flex;
+  gap: 16px;
+  padding: 10px 14px;
+  font-size: 11px;
+  color: var(--gray-500);
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-200);
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.swim-legend-item { display: flex; align-items: center; gap: 6px; }
+.swim-legend-box { display: inline-block; width: 14px; height: 14px; border-radius: 3px; }
+.swim-legend-box.main  { background: #ede9fe; border-left: 3px solid #7c3aed; }
+.swim-legend-box.sub   { background: #dbeafe; border-left: 3px solid #3b82f6; }
+.swim-legend-box.empty { background: var(--gray-100); }
+
+/* Phase Cards */
+.phase-cards { display: flex; flex-direction: column; gap: 8px; }
+.phase-card {
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-200);
+}
+.phase-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+.phase-card-header:hover { filter: brightness(1.05); }
+.phase-card-num {
+  font-size: 11px;
+  font-weight: 700;
+  background: rgba(255,255,255,0.2);
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.phase-card-title { font-size: 15px; font-weight: 700; flex: 1; }
+.phase-card-roles { display: flex; gap: 6px; flex-wrap: wrap; }
+.phase-toggle {
+  font-size: 12px;
+  opacity: 0.8;
+  transition: transform 0.2s;
+  margin-left: 4px;
+}
+.phase-card-body {
+  background: #fff;
+  padding: 20px 24px;
+  display: none;
+}
+
+.phase-point {
+  display: flex;
+  gap: 14px;
+  background: var(--gray-50);
+  border-radius: var(--radius-sm);
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  align-items: flex-start;
+  line-height: 1.6;
+  font-size: 14px;
+}
+.phase-point-icon { font-size: 22px; flex-shrink: 0; }
+
+.phase-output {
+  margin-bottom: 14px;
+}
+.phase-output-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gray-600);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.phase-output ul {
+  padding-left: 18px;
+  margin: 0;
+}
+.phase-output li {
+  font-size: 13px;
+  color: var(--gray-700);
+  margin-bottom: 4px;
+}
+
+.phase-detail {
+  border-top: 1px solid var(--gray-100);
+  padding-top: 14px;
+  font-size: 13px;
+  color: var(--gray-600);
+  line-height: 1.7;
+}
+.phase-detail p { margin-bottom: 8px; }
+.phase-detail p:last-child { margin-bottom: 0; }
+
+/* Summary */
+.proc-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.proc-summary-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--gray-200);
+}
+.proc-summary-icon { font-size: 28px; margin-bottom: 10px; }
+.proc-summary-title { font-size: 14px; font-weight: 700; color: var(--gray-800); margin-bottom: 8px; }
+.proc-summary-card p { font-size: 13px; color: var(--gray-600); line-height: 1.7; }

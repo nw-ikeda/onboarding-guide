@@ -1369,4 +1369,344 @@ const TERMS = [
 
 ];
 
+  /* ─── NEW TERMS (docx v2) ─────────────────────────────── */
+
+  {
+    id: 'dr', category: 'seo',
+    title: 'DR（Domain Rating）',
+    shortDesc: 'ドメインの被リンクの強さを0〜100で数値化した指標',
+    tags: ['DR','Domain Rating','ドメイン評価','被リンク','Ahrefs','SEO'],
+    content: `
+<div class="dc-section">
+  <h2>DRとは</h2>
+  <p>Domain Rating（ドメイン・レーティング）の略。SEOツール「Ahrefs」が提供する指標で、そのドメインが持つ被リンクの強さを<strong>0〜100のスコア</strong>で表したものです。</p>
+  <div class="highlight hl-blue">DR = ドメインの「被リンクの強さ・質」を示すスコア（0〜100）</div>
+</div>
+<div class="dc-section">
+  <h2>SEOとの関係</h2>
+  <ul>
+    <li>DRが高いサイトほど、検索エンジンから信頼されやすい</li>
+    <li>DRが高いサイトからの被リンクは、SEO評価を大きく高める</li>
+    <li>競合調査や被リンク戦略を立てる際の指標として活用される</li>
+  </ul>
+  <div class="highlight hl-yellow">DRはAhrefsの独自指標です。Googleの公式指標ではありませんが、SEO業界では広く使われています。</div>
+</div>`
+  },
+
+  {
+    id: 'rich-results', category: 'seo',
+    title: 'リッチリザルト',
+    shortDesc: '検索結果にタイトル・説明文以外の追加情報が表示される形式',
+    tags: ['リッチリザルト','リッチスニペット','検索結果','Google','構造化マークアップ'],
+    content: `
+<div class="dc-section">
+  <h2>リッチリザルトとは</h2>
+  <p>検索エンジン（主にGoogle）の検索結果画面で、通常のタイトル＋説明文だけではなく、<strong>追加の情報が表示される検索結果</strong>のことです。</p>
+  <div class="highlight hl-blue">ユーザーにとって情報が不十分と判断されるキーワードの場合、検索結果に追加で情報が表示されます。これをリッチリザルトと言います。</div>
+</div>
+<div class="dc-section">
+  <h2>代表的なリッチリザルトの種類</h2>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead><tr><th>種類</th><th>表示内容</th><th>よく使われる場面</th></tr></thead>
+      <tbody>
+        <tr><td>FAQ</td><td>質問と回答の一覧</td><td>FAQページ・サービス説明ページ</td></tr>
+        <tr><td>パンくずリスト</td><td>ページの階層構造</td><td>すべてのページ</td></tr>
+        <tr><td>レビュー・評価</td><td>星評価と件数</td><td>商品・サービス・レビューサイト</td></tr>
+        <tr><td>イベント</td><td>日時・場所</td><td>イベント告知ページ</td></tr>
+        <tr><td>レシピ</td><td>調理時間・材料</td><td>料理サイト</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>表示させるには</h2>
+  <p>構造化マークアップ（schema.org）をHTMLに記述することで、Googleがリッチリザルトとして表示する可能性が高まります。</p>
+</div>`
+  },
+
+  {
+    id: 'responsive', category: 'design',
+    title: 'レスポンシブデザイン',
+    shortDesc: 'PC・タブレット・スマホなど画面サイズに応じてレイアウトを変えるデザイン手法',
+    tags: ['レスポンシブ','SP','スマートフォン','ブレイクポイント','CSS','メディアクエリ'],
+    content: `
+<div class="dc-section">
+  <h2>レスポンシブデザインとは</h2>
+  <p>スマートフォン（SP）・タブレット・PCなど、異なる画面サイズの端末に対して、<strong>1つのHTMLでレイアウトを柔軟に変える</strong>デザイン手法です。</p>
+</div>
+<div class="dc-section">
+  <h2>ブレイクポイント</h2>
+  <p>画面サイズによってデザインを切り替えるポイントのことです。</p>
+  <div class="code-block">/* 代表的なブレイクポイント例 */
+@media (max-width: 768px) {
+  /* スマホ向けスタイル */
+  .container { padding: 16px; }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* タブレット向けスタイル */
+}
+@media (min-width: 1025px) {
+  /* PC向けスタイル */
+}</div>
+</div>
+<div class="dc-section">
+  <h2>なぜ重要か</h2>
+  <ul>
+    <li>日本のWeb閲覧の約60〜70%がスマートフォンからのアクセス</li>
+    <li>GoogleはモバイルファーストでSEO評価を行う（モバイルフレンドリー）</li>
+    <li>CWV（Core Web Vitals）のスコアもモバイル端末で測定される</li>
+  </ul>
+  <div class="highlight hl-green">制作時は「まずSP（スマホ）のデザインから考える」モバイルファーストの考え方が主流です。</div>
+</div>`
+  },
+
+  {
+    id: 'functional-req', category: 'structure',
+    title: '機能要件 vs 非機能要件',
+    shortDesc: 'サイトやシステムの「何ができるか」と「どのくらい快適か」の違い',
+    tags: ['機能要件','非機能要件','要件定義','システム開発','品質'],
+    content: `
+<div class="dc-section">
+  <h2>2種類の要件</h2>
+  <div class="comparison-grid">
+    <div class="comparison-card" style="border-color:#3b82f6">
+      <h4>機能要件</h4>
+      <p style="font-size:13px">サイトやWebアプリが<strong>何ができるか</strong></p>
+      <ul>
+        <li>お問い合わせフォームが送信できる</li>
+        <li>会員登録・ログインができる</li>
+        <li>商品を購入できる（決済機能）</li>
+        <li>記事を投稿・編集・削除できる</li>
+      </ul>
+    </div>
+    <div class="comparison-card" style="border-color:#059669">
+      <h4>非機能要件</h4>
+      <p style="font-size:13px">どのくらい<strong>快適・安全・安定して</strong>使えるか</p>
+      <ul>
+        <li>表示速度（LCP 2.5秒以内）</li>
+        <li>対応環境（ブラウザ・OS・端末）</li>
+        <li>セキュリティ（SSL・WAF）</li>
+        <li>SEO（クローリング・構造化）</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>要件定義での使い方</h2>
+  <div class="highlight hl-blue">WF作成前の要件定義では、機能要件と非機能要件の両方を整理することで、後からの認識齟齬や手戻りを防げます。</div>
+</div>`
+  },
+
+  {
+    id: 'chaos-map', category: 'biz',
+    title: 'カオスマップ',
+    shortDesc: '業界の企業・サービスをカテゴリ別に分類した「業界地図」',
+    tags: ['カオスマップ','業界地図','市場調査','競合調査','ビジネス'],
+    content: `
+<div class="dc-section">
+  <h2>カオスマップとは</h2>
+  <p>特定の業界や市場に存在する多くの企業やサービスを、機能・カテゴリ別に分類し、<strong>1枚の図にまとめた「業界地図」</strong>のことです。</p>
+</div>
+<div class="dc-section">
+  <h2>活用シーン</h2>
+  <ul>
+    <li><strong>市場調査</strong>：業界全体の競合を把握する</li>
+    <li><strong>競合分析</strong>：自社のポジションを確認する</li>
+    <li><strong>クライアント提案</strong>：業界の全体像をわかりやすく説明する</li>
+    <li><strong>新規事業調査</strong>：参入余地や差別化ポイントを探る</li>
+  </ul>
+  <div class="highlight hl-blue">Web制作でも「マーケティングツール業界のカオスマップ」「CMS業界のカオスマップ」などを参考にして提案に活用することがあります。</div>
+</div>`
+  },
+
+  {
+    id: 'server-migration', category: 'server',
+    title: 'サーバー移行',
+    shortDesc: 'サーバー変更とDNSのIPアドレス変更をセットで行う作業',
+    tags: ['サーバー移行','DNS','IPアドレス','移転','Xサーバー','AWS'],
+    content: `
+<div class="dc-section">
+  <h2>サーバー移行とは</h2>
+  <p>サーバーを変える際は、<strong>サーバーの移動</strong>と<strong>DNSのIPアドレス変更</strong>の2つをセットで行う必要があります。</p>
+  <div class="highlight hl-yellow">DNSを更新しないと、ユーザーは旧サーバーにアクセスし続けてしまいます。</div>
+</div>
+<div class="dc-section">
+  <h2>移行前と移行後の流れ</h2>
+  <div class="diagram">
+【移行前】
+<span class="node">example.com</span> → <span class="node">DNS</span> → <span class="node">旧IP: 111.111.111.111</span> → <span class="node">旧サーバー</span>
+
+【移行後・DNSを変更しないと…】
+<span class="node">example.com</span> → <span class="node">DNS（古いまま）</span> → <span class="node">旧IP</span> → <span class="node" style="color:#fca5a5">旧サーバー ✗</span>
+
+【正しい移行後】
+<span class="node">example.com</span> → <span class="node">DNS（更新済み）</span> → <span class="node">新IP: 222.222.222.222</span> → <span class="node" style="color:#6ee7b7">新サーバー ✓</span>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>移行手順のポイント</h2>
+  <div class="step-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-content"><strong>新サーバーにデータをコピー</strong><span>ファイル・データベースを新サーバーへ移す</span></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-content"><strong>新サーバーで動作確認</strong><span>hostsファイルで仮接続して確認</span></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-content"><strong>DNSのAレコードを新IPに変更</strong><span>反映には最大72時間（TTL）かかる場合がある</span></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-content"><strong>旧サーバーを解約</strong><span>DNS反映確認後に解約する</span></div></div>
+  </div>
+</div>`
+  },
+
+  {
+    id: 'api', category: 'server',
+    title: 'API',
+    shortDesc: 'ソフトウェア同士が通信するための「窓口・注文ルール」',
+    tags: ['API','REST','JSON','連携','WordPress','外部連携'],
+    content: `
+<div class="dc-section">
+  <h2>APIとは</h2>
+  <p>Application Programming Interface の略。ソフトウェアやサービス同士が情報をやりとりするための<strong>「窓口・注文ルール」</strong>のことです。</p>
+</div>
+<div class="dc-section">
+  <h2>サーバーとAPIの違い（超シンプル）</h2>
+  <div class="comparison-grid">
+    <div class="comparison-card">
+      <h4>🍳 サーバー（キッチン）</h4>
+      <p style="font-size:13px">実際に処理する本体。データを保存・計算・返す「働く場所」。</p>
+    </div>
+    <div class="comparison-card">
+      <h4>📋 API（注文票・窓口）</h4>
+      <p style="font-size:13px">「どうやって頼むか」のルール。注文の形式や受け渡し方を定める。</p>
+    </div>
+  </div>
+  <div class="diagram">
+アプリ（フロントエンド）
+  ↓ APIリクエスト「この商品の情報をください」
+<span class="node">API（窓口）</span>
+  ↓
+<span class="node">サーバー（処理）</span>
+  ↓ APIレスポンス（JSONでデータを返す）
+アプリに表示
+  </div>
+</div>
+<div class="dc-section">
+  <h2>Web制作での活用例</h2>
+  <ul>
+    <li><strong>WordPress REST API</strong>：WordPressの記事データをJSONで取得できる</li>
+    <li><strong>Google Maps API</strong>：地図を自サイトに埋め込む</li>
+    <li><strong>SNS API</strong>：TwitterやInstagramの投稿を表示する</li>
+    <li><strong>決済API</strong>：Stripeなどで支払い機能を実装</li>
+  </ul>
+</div>`
+  },
+
+  {
+    id: 'dns-advanced', category: 'server',
+    title: '権威DNS / キャッシュDNS / TTL',
+    shortDesc: 'DNSサーバーの役割の違いとキャッシュの保持時間（TTL）',
+    tags: ['権威DNS','キャッシュDNS','TTL','ネームサーバー','DNS','Cloudflare'],
+    content: `
+<div class="dc-section">
+  <h2>DNSサーバーの2種類</h2>
+  <div class="comparison-grid">
+    <div class="comparison-card" style="border-color:#2563eb">
+      <h4>権威DNSサーバー</h4>
+      <p style="font-size:13px">ドメインの「正式な答え」を持っているDNSサーバー。ネームサーバーとも呼ばれる。<br>例：さくらDNS、Cloudflare、Route53（AWS）</p>
+    </div>
+    <div class="comparison-card" style="border-color:#059669">
+      <h4>キャッシュDNSサーバー</h4>
+      <p style="font-size:13px">ドメイン情報を調べてユーザーに答える「仲介役」のサーバー。一度調べた結果をキャッシュ（一時記憶）する。</p>
+    </div>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>TTL（Time To Live）とは</h2>
+  <p>キャッシュDNSサーバーが、一度調べたDNS情報を<strong>どのくらいの時間キャッシュし続けるか</strong>を表す値です。</p>
+  <div class="highlight hl-yellow">
+    <strong>TTL = 3600（秒）なら、1時間キャッシュを保持</strong><br>
+    DNSレコードを変更しても、TTLの時間が経つまで古い情報が使われ続けることがあります。<br>
+    → サーバー移行時は「TTLを短くしてから変更する」のがベストプラクティスです。
+  </div>
+</div>
+<div class="dc-section">
+  <h2>DNSの階層構造</h2>
+  <div class="code-block">権威DNS（ネームサーバー）
+└── DNSレコード
+    ├── Aレコード（ドメイン→IP）
+    ├── CNAME（ドメイン→ドメイン）
+    ├── MX（メールサーバー指定）
+    └── TXT（SPF・DKIM等）</div>
+</div>`
+  },
+
+  {
+    id: 'repository', category: 'tool',
+    title: 'リポジトリ / doc / spec / README',
+    shortDesc: 'プロジェクトのファイル保管場所とドキュメントの種類',
+    tags: ['リポジトリ','GitHub','doc','spec','README','md','仕様書'],
+    content: `
+<div class="dc-section">
+  <h2>リポジトリとは</h2>
+  <p>プロジェクトの<strong>保管場所</strong>のことです。コード・画像・設定・ドキュメントをすべてまとめて保存する場所で、GitHubでは「1プロジェクト＝1リポジトリ」が基本です。</p>
+</div>
+<div class="dc-section">
+  <h2>ドキュメントの種類</h2>
+  <div class="data-table-wrap">
+    <table class="data-table">
+      <thead><tr><th>略称</th><th>フルネーム</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>doc.</td><td>document</td><td>資料全般を指す総称</td></tr>
+        <tr><td>md</td><td>Markdownファイル</td><td>エンジニアがよく使う軽いドキュメント形式（.md）</td></tr>
+        <tr><td>spec</td><td>specification</td><td>仕様書。システムや機能の詳細な定義書</td></tr>
+        <tr><td>README</td><td>README.md</td><td>プロジェクトの説明書。GitHubでトップに表示される</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>AI開発での主なファイル構成</h2>
+  <div class="code-block">project/
+├── README.md          # プロジェクト説明
+├── requirements.md    # 要件定義
+├── architecture.md    # システム設計
+├── sitemap.md         # サイト構造
+└── prompt.md          # AIへの指示</div>
+  <div class="highlight hl-blue">Markdownファイルは AI への指示書・仕様書として使われることが増えています。</div>
+</div>`
+  },
+
+  {
+    id: 'contract-flow', category: 'biz',
+    title: '契約書フロー',
+    shortDesc: '案件受注時の契約書作成・送付・締結までの流れ',
+    tags: ['契約書','発注書','業務委託','個別契約','リーガルサイン','フロー'],
+    content: `
+<div class="dc-section">
+  <h2>契約書の作成・送付フロー</h2>
+  <div class="step-list">
+    <div class="step-item"><div class="step-num">1</div><div class="step-content"><strong>担当者がテンプレート（ドキュメント）で契約書を作成</strong><span>個別契約書・業務委託契約書・サービス仕様書を準備</span></div></div>
+    <div class="step-item"><div class="step-num">2</div><div class="step-content"><strong>担当者と先方で契約書内容のやりとり</strong><span>内容を確定させてからバックオフィスへ渡す</span></div></div>
+    <div class="step-item"><div class="step-num">3</div><div class="step-content"><strong>Slackのワークフローから送付依頼</strong><span>バックオフィスがリーガルサインでクライアントへ送付</span></div></div>
+    <div class="step-item"><div class="step-num">4</div><div class="step-content"><strong>クライアントが電子署名（締結）</strong><span>締結完了でプロジェクト正式スタート</span></div></div>
+  </div>
+</div>
+<div class="dc-section">
+  <h2>送る書類の種類</h2>
+  <ul>
+    <li><strong>業務委託契約書</strong>：継続的な取引関係を定める基本契約</li>
+    <li><strong>個別契約書</strong>：案件ごとの詳細（金額・納期・仕様）を定める</li>
+    <li><strong>サービス仕様書</strong>：依頼サイトに対する技術的仕様を明記</li>
+  </ul>
+</div>
+<div class="dc-section">
+  <h2>発注書について</h2>
+  <div class="highlight hl-yellow">
+    <strong>Q：なぜNW側が発注書を発行するのか？</strong><br>
+    クライアントから発注書を発行されると「承り書（承りました）」の書面が必要と言われる場合があり、ラリーが増えるため、NW側から発行する形にしています。
+  </div>
+  <div class="highlight hl-blue">
+    <strong>誰が送るのか？</strong><br>
+    新規案件は営業が締結することが多い。既存案件はDirが対応する場合が多い。
+  </div>
+</div>`
+  },
+
 // end of data

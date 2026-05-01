@@ -3,168 +3,153 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>オンボーディングガイド | Web制作基礎知識</title>
+  <title>Web制作 オンボーディングガイド</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="layout">
 
-  <!-- ===== SIDEBAR ===== -->
-  <aside class="sidebar">
-    <div class="sidebar-logo">
-      <span class="sidebar-logo-icon">📚</span>
-      <div>
-        <div class="sidebar-logo-title">オンボーディング</div>
-        <div class="sidebar-logo-sub">Web制作 基礎ガイド</div>
-      </div>
-    </div>
+<!-- ===== HERO ===== -->
+<header class="top-hero">
+  <div class="top-hero-badge">New Member Guide</div>
+  <h1>Web制作<br><span>オンボーディングガイド</span></h1>
+  <p class="top-hero-sub">現場で使われる用語・概念・ツールを<br>カテゴリ別にわかりやすくまとめました</p>
+  <div class="top-search-wrap">
+    <input type="text" id="heroSearch" placeholder="🔍  用語を検索（例: DNS, SEO, ワイヤーフレーム）"
+      onkeydown="if(event.key==='Enter')doSearch()">
+    <button class="top-search-btn" onclick="doSearch()">検索する</button>
+  </div>
+</header>
 
-    <div class="sidebar-search">
-      <span class="sidebar-search-icon">🔍</span>
-      <input type="text" id="searchInput" placeholder="用語を検索..." oninput="handleSearch(this.value)">
-    </div>
-
-    <nav class="sidebar-nav">
-      <div class="nav-section">カテゴリ</div>
-      <div id="categoryList"></div>
-    </nav>
-  </aside>
-
-  <!-- ===== MAIN ===== -->
-  <main class="main-content">
-    <div class="content-header">
-      <h1 id="pageTitle">すべての用語</h1>
-      <div class="meta">
-        <span id="termCount" class="count-badge">0件</span>
-        <span id="searchLabel" class="search-label" style="display:none"></span>
-      </div>
-    </div>
-
-    <div class="cards-grid" id="cardsGrid"></div>
-    <div class="empty-state" id="emptyState" style="display:none">
-      <div style="font-size:48px;margin-bottom:16px">🔍</div>
-      <h3>該当する用語が見つかりません</h3>
-      <p>別のキーワードで検索してみてください</p>
-    </div>
-  </main>
+<!-- ===== STATS ===== -->
+<div class="top-stats" id="statsBar">
+  <!-- JS で描画 -->
 </div>
+
+<!-- ===== MAIN ===== -->
+<main class="top-main">
+
+  <!-- カテゴリ一覧 -->
+  <div>
+    <h2 class="top-section-title">📂 カテゴリから探す</h2>
+    <p class="top-section-sub">気になるカテゴリをクリックすると、その分野の用語一覧が開きます</p>
+    <div class="cat-grid" id="catGrid"><!-- JS --></div>
+  </div>
+
+  <!-- 新着・追加用語 -->
+  <div class="top-recent">
+    <h2 class="top-section-title">🆕 最近追加された用語</h2>
+    <p class="top-section-sub">ドキュメントv2から追加された用語</p>
+    <div class="recent-grid" id="recentGrid"><!-- JS --></div>
+  </div>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="top-footer">
+  <p>Web制作 オンボーディングガイド &nbsp;|&nbsp;
+    <a href="list.html">用語一覧</a> &nbsp;|&nbsp;
+    <a href="https://github.com/nw-ikeda/onboarding-guide" target="_blank">GitHub</a>
+  </p>
+</footer>
 
 <script src="data.js"></script>
 <script>
-  let currentCategory = 'all';
-  let currentSearch = '';
+  /* ── カテゴリの補足説明 */
+  const CAT_DESCS = {
+    seo:       'SEO・AIO・GEO・AEO・E-E-A-T・CWV・カノニカル・被リンク など',
+    server:    'DNS・ドメイン・サーバー種類・SSL・サーバー移行・API など',
+    design:    'レイアウト・WF・デザインカンプ・VI設計・余白・視覚階層 など',
+    tool:      'WordPress・CRM・Markdown・API・リポジトリ・PHP など',
+    biz:       'PM/Dir/AD・契約書フロー・PL/CF・インバウンドマーケ など',
+    structure: 'サイトマップ3種・WF作成7ステップ・機能/非機能要件 など',
+  };
 
-  // ── カテゴリリストを描画
-  function renderCategories() {
-    const list = document.getElementById('categoryList');
-    list.innerHTML = CATEGORIES.map(cat => `
-      <div class="nav-item ${cat.id === currentCategory ? 'active' : ''}"
-           onclick="selectCategory('${cat.id}')"
-           style="${cat.id === currentCategory ? 'background:'+cat.color : ''}">
-        <span class="nav-item-icon">${cat.icon}</span>
-        <span class="nav-item-label">${cat.label}</span>
+  /* ── カテゴリアイコン背景色 */
+  const CAT_BG = {
+    seo: '#dbeafe', server: '#d1fae5', design: '#ede9fe',
+    tool: '#fef3c7', biz: '#fee2e2', structure: '#cffafe',
+  };
+
+  /* ── 最近追加した用語 ID (docx v2 から追加) */
+  const RECENT_IDS = [
+    'dr','rich-results','responsive','functional-req',
+    'chaos-map','server-migration','api','dns-advanced',
+    'repository','contract-flow'
+  ];
+
+  /* ── Stats */
+  function renderStats() {
+    const total = TERMS.length;
+    const cats  = CATEGORIES.filter(c => c.id !== 'all').length;
+    document.getElementById('statsBar').innerHTML = `
+      <div class="top-stat-item">
+        <div class="top-stat-num">${total}</div>
+        <div class="top-stat-label">収録用語数</div>
       </div>
-    `).join('');
+      <div class="top-stat-item">
+        <div class="top-stat-num">${cats}</div>
+        <div class="top-stat-label">カテゴリ数</div>
+      </div>
+      <div class="top-stat-item">
+        <div class="top-stat-num">+${RECENT_IDS.length}</div>
+        <div class="top-stat-label">今回追加</div>
+      </div>`;
   }
 
-  // ── カード一覧を描画
-  function renderCards() {
-    const filtered = TERMS.filter(t => {
-      const matchCat = currentCategory === 'all' || t.category === currentCategory;
-      const q = currentSearch.toLowerCase();
-      const matchSearch = !q
-        || t.title.toLowerCase().includes(q)
-        || t.shortDesc.toLowerCase().includes(q)
-        || t.tags.some(tag => tag.toLowerCase().includes(q));
-      return matchCat && matchSearch;
-    });
-
-    const grid = document.getElementById('cardsGrid');
-    const empty = document.getElementById('emptyState');
-    const countEl = document.getElementById('termCount');
-
-    countEl.textContent = filtered.length + '件';
-
-    if (filtered.length === 0) {
-      grid.style.display = 'none';
-      empty.style.display = 'block';
-      return;
-    }
-    grid.style.display = 'grid';
-    empty.style.display = 'none';
-
-    const cat = CATEGORIES.find(c => c.id === currentCategory) || CATEGORIES[0];
-
-    grid.innerHTML = filtered.map(term => {
-      const termCat = CATEGORIES.find(c => c.id === term.category);
-      const tagClass = 'tag-' + term.category;
+  /* ── Category Cards */
+  function renderCatGrid() {
+    const cats = CATEGORIES.filter(c => c.id !== 'all');
+    document.getElementById('catGrid').innerHTML = cats.map(cat => {
+      const count = TERMS.filter(t => t.category === cat.id).length;
+      const bg    = CAT_BG[cat.id] || '#f1f5f9';
       return `
-        <div class="term-card" onclick="goDetail('${term.id}')">
-          <span class="card-category-tag ${tagClass}">${termCat ? termCat.icon + ' ' + termCat.label : ''}</span>
-          <div class="card-title">${highlight(term.title, currentSearch)}</div>
-          <div class="card-desc">${highlight(term.shortDesc, currentSearch)}</div>
-          <div class="card-tags">
-            ${term.tags.slice(0,4).map(t => `<span class="tag">${t}</span>`).join('')}
+        <a class="cat-card" href="list.html?category=${cat.id}">
+          <div class="cat-card-top">
+            <div class="cat-icon-wrap" style="background:${bg}">${cat.icon}</div>
+            <span class="cat-card-count">${count}件</span>
           </div>
-          <div class="card-footer">
-            <span class="card-link">詳細を見る →</span>
+          <div class="cat-card-body">
+            <div class="cat-card-title">${cat.label}</div>
+            <div class="cat-card-desc">${CAT_DESCS[cat.id] || ''}</div>
           </div>
-        </div>`;
+          <div class="cat-card-footer">
+            <span class="cat-card-link">一覧を見る →</span>
+          </div>
+        </a>`;
     }).join('');
   }
 
-  // ── ページタイトル更新
-  function updateTitle() {
-    const cat = CATEGORIES.find(c => c.id === currentCategory);
-    document.getElementById('pageTitle').textContent =
-      currentCategory === 'all' ? 'すべての用語' : cat.label;
-
-    const label = document.getElementById('searchLabel');
-    if (currentSearch) {
-      label.style.display = 'inline';
-      label.textContent = '「' + currentSearch + '」で検索中';
-    } else {
-      label.style.display = 'none';
-    }
+  /* ── Recent Terms */
+  function renderRecent() {
+    const items = RECENT_IDS
+      .map(id => TERMS.find(t => t.id === id))
+      .filter(Boolean);
+    document.getElementById('recentGrid').innerHTML = items.map(term => {
+      const cat = CATEGORIES.find(c => c.id === term.category);
+      const bg  = CAT_BG[term.category] || '#f1f5f9';
+      return `
+        <a class="recent-item" href="detail.html?id=${term.id}">
+          <div class="recent-item-icon" style="background:${bg}">${cat ? cat.icon : '📄'}</div>
+          <div class="recent-item-body">
+            <div class="recent-item-title">${term.title}</div>
+            <div class="recent-item-desc">${term.shortDesc}</div>
+          </div>
+          <span class="recent-item-arrow">›</span>
+        </a>`;
+    }).join('');
   }
 
-  // ── カテゴリ選択
-  function selectCategory(id) {
-    currentCategory = id;
-    currentSearch = '';
-    document.getElementById('searchInput').value = '';
-    updateTitle();
-    renderCategories();
-    renderCards();
+  /* ── Search */
+  function doSearch() {
+    const q = document.getElementById('heroSearch').value.trim();
+    if (q) location.href = 'list.html?q=' + encodeURIComponent(q);
+    else   location.href = 'list.html';
   }
 
-  // ── 検索
-  function handleSearch(val) {
-    currentSearch = val;
-    updateTitle();
-    renderCards();
-  }
-
-  // ── 詳細ページへ
-  function goDetail(id) {
-    location.href = 'detail.html?id=' + id;
-  }
-
-  // ── 検索ハイライト
-  function highlight(text, q) {
-    if (!q) return text;
-    const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return text.replace(re, '<mark>$1</mark>');
-  }
-
-  // ── URL パラメータからカテゴリ復元
-  const params = new URLSearchParams(location.search);
-  if (params.get('category')) currentCategory = params.get('category');
-
-  // ── 初期描画
-  renderCategories();
-  updateTitle();
-  renderCards();
+  /* ── Init */
+  renderStats();
+  renderCatGrid();
+  renderRecent();
 </script>
 </body>
 </html>

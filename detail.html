@@ -11,118 +11,124 @@
 
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
-    <div class="sidebar-logo" onclick="location.href='index.html'" style="cursor:pointer">
+    <a class="sidebar-logo" href="index.html">
       <span class="sidebar-logo-icon">📚</span>
       <div>
-        <div class="sidebar-logo-title">オンボーディング</div>
-        <div class="sidebar-logo-sub">Web制作 基礎ガイド</div>
+        <span class="sidebar-logo-title">オンボーディング</span>
+        <span class="sidebar-logo-sub">Web制作 基礎ガイド</span>
       </div>
-    </div>
+    </a>
 
     <div class="sidebar-search">
       <span class="sidebar-search-icon">🔍</span>
       <input type="text" id="searchInput" placeholder="用語を検索..."
-        onkeydown="if(event.key==='Enter')location.href='index.html?q='+this.value">
+        onkeydown="if(event.key==='Enter' && this.value) location.href='list.html?q='+encodeURIComponent(this.value)">
     </div>
 
     <nav class="sidebar-nav">
       <div class="nav-section">カテゴリ</div>
       <div id="categoryList"></div>
     </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-home-btn" href="index.html">← トップへ戻る</a>
+    </div>
   </aside>
 
   <!-- ===== MAIN ===== -->
   <main class="main-content">
-    <a href="index.html" class="back-btn">← 一覧に戻る</a>
+    <a href="list.html" class="back-btn" id="backBtn">← 一覧に戻る</a>
 
     <div id="detailContent">
       <div class="empty-state">
         <div style="font-size:48px;margin-bottom:16px">⚠️</div>
         <h3>用語が見つかりません</h3>
-        <p><a href="index.html" style="color:var(--primary)">一覧に戻る</a></p>
+        <p><a href="list.html" style="color:var(--primary)">一覧に戻る</a></p>
       </div>
     </div>
 
-    <!-- PREV / NEXT NAV -->
     <div class="detail-nav" id="detailNav" style="display:none">
-      <a href="#" id="prevBtn" class="detail-nav-btn">← 前の用語</a>
-      <a href="#" id="nextBtn" class="detail-nav-btn">次の用語 →</a>
+      <a href="#" id="prevBtn" class="detail-nav-btn" style="visibility:hidden">←</a>
+      <a href="#" id="nextBtn" class="detail-nav-btn" style="visibility:hidden">→</a>
     </div>
   </main>
 </div>
 
 <script src="data.js"></script>
 <script>
-  // ── サイドバー描画
+  const CAT_BG = {
+    seo:'#dbeafe', server:'#d1fae5', design:'#ede9fe',
+    tool:'#fef3c7', biz:'#fee2e2', structure:'#cffafe',
+  };
+
+  /* ── サイドバー */
   function renderSidebar(activeCat) {
-    const list = document.getElementById('categoryList');
-    list.innerHTML = CATEGORIES.map(cat => `
-      <div class="nav-item ${cat.id === activeCat ? 'active' : ''}"
-           onclick="location.href='index.html?category=${cat.id}'"
-           style="${cat.id === activeCat ? 'background:'+cat.color : ''}">
-        <span class="nav-item-icon">${cat.icon}</span>
-        <span class="nav-item-label">${cat.label}</span>
-      </div>
-    `).join('');
+    const counts = {};
+    TERMS.forEach(t => { counts[t.category] = (counts[t.category] || 0) + 1; });
+    document.getElementById('categoryList').innerHTML = CATEGORIES.map(cat => {
+      const isActive = cat.id === activeCat;
+      const count    = cat.id === 'all' ? TERMS.length : (counts[cat.id] || 0);
+      const style    = isActive ? `style="background:${cat.color}"` : '';
+      return `
+        <div class="nav-item ${isActive ? 'active' : ''}" ${style}
+             onclick="location.href='list.html?category=${cat.id}'">
+          <span class="nav-item-icon">${cat.icon}</span>
+          <span class="nav-item-label">${cat.label}</span>
+          <span class="nav-item-count">${count}</span>
+        </div>`;
+    }).join('');
   }
 
-  // ── メインコンテンツ描画
+  /* ── 詳細コンテンツ */
   function renderDetail(id) {
     const term = TERMS.find(t => t.id === id);
-    if (!term) return;
+    if (!term) { renderSidebar('all'); return; }
 
     document.title = term.title + ' | オンボーディングガイド';
 
     const cat = CATEGORIES.find(c => c.id === term.category);
-    const tagClass = 'tag-' + term.category;
+    const bg  = CAT_BG[term.category] || '#f1f5f9';
 
     document.getElementById('detailContent').innerHTML = `
       <div class="detail-header">
-        <span class="card-category-tag ${tagClass}" style="font-size:13px;padding:5px 14px">
+        <span class="card-category-tag tag-${term.category}" style="font-size:12px;padding:4px 14px">
           ${cat ? cat.icon + ' ' + cat.label : ''}
         </span>
         <h1>${term.title}</h1>
-        <p style="font-size:15px;color:var(--gray-500);margin-top:8px">${term.shortDesc}</p>
-        <div class="card-tags" style="margin-top:12px">
+        <p class="detail-sub">${term.shortDesc}</p>
+        <div class="card-tags" style="margin-top:10px">
           ${term.tags.map(t => `<span class="tag">${t}</span>`).join('')}
         </div>
       </div>
       <div class="detail-body">${term.content}</div>
     `;
 
+    /* 戻るリンクにカテゴリを付与 */
+    document.getElementById('backBtn').href = 'list.html?category=' + term.category;
+
     renderSidebar(term.category);
 
-    // 前後ナビ
+    /* 前後ナビ */
     const sameCat = TERMS.filter(t => t.category === term.category);
-    const idx = sameCat.findIndex(t => t.id === id);
-    const nav = document.getElementById('detailNav');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
+    const idx     = sameCat.findIndex(t => t.id === id);
+    const nav     = document.getElementById('detailNav');
     nav.style.display = 'flex';
+    const prev = document.getElementById('prevBtn');
+    const next = document.getElementById('nextBtn');
     if (idx > 0) {
-      prevBtn.href = 'detail.html?id=' + sameCat[idx-1].id;
-      prevBtn.textContent = '← ' + sameCat[idx-1].title;
-      prevBtn.style.visibility = 'visible';
-    } else {
-      prevBtn.style.visibility = 'hidden';
+      prev.href = 'detail.html?id=' + sameCat[idx-1].id;
+      prev.textContent = '← ' + sameCat[idx-1].title;
+      prev.style.visibility = 'visible';
     }
     if (idx < sameCat.length - 1) {
-      nextBtn.href = 'detail.html?id=' + sameCat[idx+1].id;
-      nextBtn.textContent = sameCat[idx+1].title + ' →';
-      nextBtn.style.visibility = 'visible';
-    } else {
-      nextBtn.style.visibility = 'hidden';
+      next.href = 'detail.html?id=' + sameCat[idx+1].id;
+      next.textContent = sameCat[idx+1].title + ' →';
+      next.style.visibility = 'visible';
     }
   }
 
-  // ── 初期化
   const params = new URLSearchParams(location.search);
-  const id = params.get('id');
-  if (id) {
-    renderDetail(id);
-  } else {
-    renderSidebar('all');
-  }
+  renderDetail(params.get('id'));
 </script>
 </body>
 </html>
